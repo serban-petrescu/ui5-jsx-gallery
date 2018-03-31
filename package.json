@@ -1,0 +1,35 @@
+{
+    "name": "spet-ui5-jsx-gallery",
+    "version": "0.0.1",
+    "description": "UI5 Gallery using JSX",
+    "main": "src/index.html",
+    "scripts": {
+      "start": "grunt start"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/serban-petrescu/ui5-jsx-gallery.git"
+    },
+    "keywords": [
+      "ui5",
+      "gallery"
+    ],
+    "private": true,
+    "author": "Serban Petrescu",
+    "license": "Apache-2.0",
+    "bugs": {
+      "url": "https://github.com/serban-petrescu/ui5-jsx-gallery/issues"
+    },
+    "devDependencies": {
+      "babel-preset-env": "^1.6.0",
+      "grunt": "^1.0.1",
+      "grunt-babel": "^6.0.0",
+      "grunt-cli": "^1.2.0",
+      "grunt-contrib-clean": "^1.1.0",
+      "grunt-contrib-connect": "^1.0.2",
+      "grunt-contrib-copy": "^1.0.0",
+      "grunt-contrib-watch": "^1.0.0",
+      "spet-ui5-jsx-rm": "0.0.1"
+    }
+  }
+  

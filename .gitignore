@@ -1,0 +1,7 @@
+/.user.project.json
+/.project.json
+/neo-app.json
+
+/.vscode
+/node_modules
+/dist
