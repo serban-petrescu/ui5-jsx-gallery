@@ -4,7 +4,8 @@
     "description": "UI5 Gallery using JSX",
     "main": "src/index.html",
     "scripts": {
-      "start": "grunt start"
+      "start": "grunt start",
+      "build": "grunt dev"
     },
     "repository": {
       "type": "git",
@@ -32,4 +33,3 @@
       "spet-ui5-jsx-rm": "0.0.1"
     }
   }
-  
