@@ -27,6 +27,15 @@ module.exports = function (grunt) {
                     src: ["**", "!**/*.js"],
                     dest: "dist/"
                 }]
+            },
+            pages: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: "./",
+                    src: ["docs/**/*", "dist/**/*"],
+                    dest: "pages/"
+                }]
             }
         },
         watch: {
@@ -57,6 +66,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-connect");
     grunt.loadNpmTasks("grunt-babel");
 
-    grunt.registerTask("dev", ["clean", "babel", "copy"]);
+    grunt.registerTask("dev", ["clean", "babel", "copy:dist"]);
     grunt.registerTask("start", ["dev", "connect", "watch"]);
+    grunt.registerTask("build", ["dev", "copy:pages"]);
 }

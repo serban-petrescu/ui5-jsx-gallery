@@ -5,7 +5,7 @@
     "main": "src/index.html",
     "scripts": {
       "start": "grunt start",
-      "build": "grunt dev"
+      "build": "grunt build"
     },
     "repository": {
       "type": "git",
