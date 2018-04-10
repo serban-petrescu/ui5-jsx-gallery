@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JSX in UI5 Apps</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/msg.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="assets/xcode.css">
+
+		<style>
+			.reveal .playback {
+				bottom: 25px !important
+			}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<img src="assets/logo.png" class="logo"/>
+		<div class="footnote">msg | April 2018 | sitTSR 2018</div>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>JSX in UI5 Apps</h1>
+					<p>
+						<small>by <a href="https://serban-petrescu.github.io">Serban Petrescu</a></small>
+					</p>
+				</section>
+				<section>
+					<section>
+						<h1>JSX</h1>
+					</section>
+					<section>
+						<p>
+							<strong>JSX</strong> is a syntax extension for JavaScript popularized by ReactJS.
+                        </p>
+                        <p>
+                            The power of JSX comes from the fact that is can be mixed with regular JavaScript expressions.
+                        </p>
+                    </section>
+                    <section>
+                        <p> For example the following JSX expression: </p>
+<pre><code>
+    <ul>
+    {
+        ["A", "B", "C", "D", "E"].forEach(l => <li>{ l }</li>)
+    }
+    </ul>
+
+</code></pre>
+                        <p>... could potentially create a list with 5 items.</p>
+                    </section>
+                    <section>
+                        <p>
+                            JSX needs to be <strong>compiled</strong> into regular JavaScript.
+                        </p>
+                        <p>
+                            For example the following React JSX expression:
+                        </p>
+<pre><code class="javascript">
+const element = (
+    &lt;h1 className="greeting">Hello, world!&lt;/h1>
+);
+
+</code></pre>
+                        <p>... gets compiled using Babel into:</p>
+<pre><code class="javascript">
+const element = React.createElement(
+    'h1', {className: 'greeting'}, 'Hello, world!'
+);
+
+</code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>UI5 Custom Controls</h1>
+                    </section>
+                    <section>
+                        <p>
+                            UI5 allows developers to define their own controls (in case there is no standard control or if a
+                            completely different look and feel is needed).
+                        </p>
+                        <p>
+                            The same mechanism used to define standard controls is also used for custom controls.
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Rendering the HTML for a control is a pain in the #$!. It is fairly error prone and not readable.
+                        </p>
+                        <p>
+                            That's why SAP is considering providing Handlebars support for building custom controls and there
+                            are even a few tools for transforming bare HTML in the UI5 boilerplate.
+                        </p>
+                    </section>
+                    <section>
+                        <p>UI5 documentation renderer example:</p>
+<pre><code class="javascript">
+function(oRm, oControl) {
+    oRm.write('&lt;div');
+    oRm.writeControlData(oControl);
+    oRm.addStyle('width', oControl.getSize());
+    oRm.addStyle('height', oControl.getSize());
+    oRm.writeStyles();
+    oRm.addClass('mySquare');
+    oRm.writeClasses();
+    oRm.write('>');
+    oRm.writeEscaped(oControl.getText());
+    oRm.write('&lt;/div>');
+}
+
+</code></pre>
+                    </section>
+                    <section>
+                        <p>Wouldn't it be easier to just write:</p>
+<pre><code class="javascript">
+function(oRm, oControl) {
+    var size = oControl.getSize();
+    oRm.render(
+        &lt;div class="mySquare" style={ {width: size, height: size} }>
+            { oControl.getText() }
+        &lt;/div>
+    );
+}
+
+</code></pre>
+                    </section>
+                    <section>
+                        <p>We can do just that using Babel with a small JSX plugin that I wrote.</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1><strong>Demo</strong></h1>
+                    </section>
+                </section>
+				<section>
+					<h3>Fork me on GitHub</h3>
+					<a href="https://github.com/serban-petrescu/ui5-jsx-gallery">https://github.com/serban-petrescu/ui5-jsx-gallery</a>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				mouseWheel: true,
+				slideNumber: true,
+				transition: 'fade',
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
