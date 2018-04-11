@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>JSX in UI5 Apps</title>
-
+		<title>JSX &amp; UI5</title>
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/msg.css">
 
@@ -33,21 +33,51 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h1>JSX in UI5 Apps</h1>
+					<h1>Building apps with JSX for UI5</h1>
 					<p>
 						<small>by <a href="https://serban-petrescu.github.io">Serban Petrescu</a></small>
 					</p>
 				</section>
+                <section>
+                    <section>
+                        <h1>UI5 Basics</h1>
+                    </section>
+                    <section>
+                        <p>UI5 is a (rather archaic) partially open source UI framework from SAP.</p>
+                        <p>
+                            It is tightly coupled with <strong>jQuery</strong> and delivers both the mechanisms
+                            for building UIs from scratch and an extensive set of responsive controls.
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            UI5 applications boil down to a N-ary tree of controls. Each control may have several
+                            <strong>aggregations</strong> under which child controls may reside.
+                        </p>
+                        <p>
+                            These controls can be grouped into several higher level abstractions (views, fragments).
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            The UI5 control tree is linked to the HTML DOM.
+                        </p>
+                        <p>
+                            Each control has a <strong>renderer</strong> function or class which is responsible with writing the
+                            control's HTML.
+                        </p>
+                    </section>
+                </section>
 				<section>
 					<section>
-						<h1>JSX</h1>
+						<h1>JSX Basics</h1>
 					</section>
 					<section>
 						<p>
 							<strong>JSX</strong> is a syntax extension for JavaScript popularized by ReactJS.
                         </p>
                         <p>
-                            The power of JSX comes from the fact that is can be mixed with regular JavaScript expressions.
+                            The power of JSX is that it can be mixed with regular JavaScript expressions.
                         </p>
                     </section>
                     <section>
@@ -86,12 +116,12 @@ const element = React.createElement(
                 </section>
                 <section>
                     <section>
-                        <h1>UI5 Custom Controls</h1>
+                        <h1>Custom Controls</h1>
                     </section>
                     <section>
                         <p>
-                            UI5 allows developers to define their own controls (in case there is no standard control or if a
-                            completely different look and feel is needed).
+                            UI5 allows developers to define their own controls (in case there is no standard control fits the requirements
+                            or if a completely different look and feel is needed).
                         </p>
                         <p>
                             The same mechanism used to define standard controls is also used for custom controls.
@@ -99,11 +129,11 @@ const element = React.createElement(
                     </section>
                     <section>
                         <p>
-                            Rendering the HTML for a control is a pain in the #$!. It is fairly error prone and not readable.
+                            Rendering the HTML for a control is a pain in the #$!. It is error prone and not readable at all.
                         </p>
                         <p>
-                            That's why SAP is considering providing Handlebars support for building custom controls and there
-                            are even a few tools for transforming bare HTML in the UI5 boilerplate.
+                            That's why SAP wants to add <strong>Handlebars</strong> support for building controls and
+                            there are a few tools for transforming bare HTML in the UI5 boilerplate.
                         </p>
                     </section>
                     <section>
@@ -141,10 +171,13 @@ function(oRm, oControl) {
                     <section>
                         <p>We can do just that using Babel with a small JSX plugin that I wrote.</p>
                     </section>
+                    <section>
+                        <h1><strong>Demo: Select</strong></h1>
+                    </section>
                 </section>
                 <section>
                     <section>
-                        <h1><strong>Demo</strong></h1>
+                        <h1><strong>Walk-through</strong></h1>
                     </section>
                 </section>
 				<section>
