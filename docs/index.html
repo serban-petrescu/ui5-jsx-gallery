@@ -37,35 +37,68 @@
 					<p>
 						<small>by <a href="https://serban-petrescu.github.io">Serban Petrescu</a></small>
 					</p>
-				</section>
+                </section>
+                <section>
+                    <h3>About me</h3>
+                    <ul>
+                        <li>Senior IT Consultant @ msg-systems</li>
+                        <li>Lead dev and architect for a cloud project</li>
+                        <li>Worked with ABAP, HANA, UI5, SCP</li>
+                        <li>Really into open source (Spring, Node, React)</li>
+                        <li><a href="http://serban-petrescu.github.io">http://serban-petrescu.github.io</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h1><strong>Show App</strong></h1>
+                </section>
+                <section>
+                    <section>
+                        <h1>Web Recap</h1>
+                    </section>
+                    <section>
+                        <p>
+                            <strong>HTML</strong>: intermingled <strong>structure</strong> and <strong>data</strong>.
+                        </p>
+                        <p>
+                            <strong>CSS</strong>: defines how the HTML should <strong>look</strong> like.
+                        </p>
+                        <p>
+                            <strong>JavaScript</strong>: user <strong>interaction</strong>, communication with the backend,
+                            dynamic UI building, etc.
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Bare HTML vs With Semantic CSS</h3>
+                        <img src="./assets/html-css.png" />
+                    </section>
+                </section>
                 <section>
                     <section>
                         <h1>UI5 Basics</h1>
                     </section>
                     <section>
-                        <p>UI5 is a (rather archaic) partially open source UI framework from SAP.</p>
                         <p>
-                            It is tightly coupled with <strong>jQuery</strong> and delivers both the mechanisms
-                            for building UIs from scratch and an extensive set of responsive controls.
+                            UI5 is a (<em>archaic</em>) partially <strong>open source</strong> framework from SAP.
+                            It has all the necessary parts for building UIs from scratch.
                         </p>
                     </section>
                     <section>
                         <p>
-                            UI5 applications boil down to a N-ary tree of controls. Each control may have several
+                            UI5 applications boil down to a tree of controls. Each control may have several
                             <strong>aggregations</strong> under which child controls may reside.
                         </p>
-                        <p>
-                            These controls can be grouped into several higher level abstractions (views, fragments).
-                        </p>
+                        <img src="./assets/aggregations.png"/>
                     </section>
                     <section>
                         <p>
-                            The UI5 control tree is linked to the HTML DOM.
-                        </p>
-                        <p>
-                            Each control has a <strong>renderer</strong> function or class which is responsible with writing the
+                            Each control has a <strong>renderer</strong> function or class which is responsible for writing the
                             control's HTML.
                         </p>
+                        <img src="./assets/rendering.png"/>
+                    </section>
+                    <section>
+                        <h3>UI5 vs HTML</h3>
+                        <img src="./assets/ui5-html.png"/>
                     </section>
                 </section>
 				<section>
@@ -120,20 +153,12 @@ const element = React.createElement(
                     </section>
                     <section>
                         <p>
-                            UI5 allows developers to define their own controls (in case there is no standard control fits the requirements
-                            or if a completely different look and feel is needed).
-                        </p>
-                        <p>
-                            The same mechanism used to define standard controls is also used for custom controls.
+                            UI5 allows developers to define their own controls, in the same way that standard controls are created by SAP.
                         </p>
                     </section>
                     <section>
                         <p>
-                            Rendering the HTML for a control is a pain in the #$!. It is error prone and not readable at all.
-                        </p>
-                        <p>
-                            That's why SAP wants to add <strong>Handlebars</strong> support for building controls and
-                            there are a few tools for transforming bare HTML in the UI5 boilerplate.
+                            Rendering the HTML for a control is a pain in the #$!. It is highly error prone and completely unreadable.
                         </p>
                     </section>
                     <section>
@@ -169,10 +194,37 @@ function(oRm, oControl) {
 </code></pre>
                     </section>
                     <section>
-                        <p>We can do just that using Babel with a small JSX plugin that I wrote.</p>
+                        <p>We can do just that using <strong>Babel</strong> with a small plugin that I wrote.</p>
                     </section>
                     <section>
                         <h1><strong>Demo: Select</strong></h1>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Why JSX?</h1>
+                    </section>
+                    <section>
+                        <p>
+                            There is a wide support from tools and frameworks:
+                            <ul>
+                                <li>ReactJS (>90k stars)</li>
+                                <li>VueJS (>90k stars)</li>
+                                <li>BabelJS (>25k stars)</li>
+                            </ul>
+                        </p>
+                        <small>OpenUI5 has 1.5k stars.</small>
+                    </section>
+                    <section>
+                        <p>
+                            Can be checked at design time using <strong>eslint</strong> to prevent frequent
+                            mistakes (e.g. forgetting to close a div tag).
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Arguably, it has the most flexibility because it can use JavaScript expressions directly.
+                        </p>
                     </section>
                 </section>
                 <section>
@@ -198,7 +250,7 @@ function(oRm, oControl) {
 				center: true,
 				mouseWheel: true,
 				slideNumber: true,
-				transition: 'fade',
+				transition: 'slide',
 				history: true,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
