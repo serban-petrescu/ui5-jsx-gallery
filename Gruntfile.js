@@ -46,6 +46,13 @@ module.exports = function (grunt) {
                     livereload: true,
                     spawn: false
                 }
+            },
+            docs: {
+                files: ["docs/**/*"],
+                options: {
+                    livereload: true,
+                    spawn: false
+                }
             }
         },
         connect: {
@@ -55,6 +62,14 @@ module.exports = function (grunt) {
                     base: "dist",
                     hostname: "localhost",
                     port: 5000
+                }
+            },
+            docs: {
+                options: {
+                    livereload: true,
+                    base: "docs",
+                    hostname: "localhost",
+                    port: 5001
                 }
             }
         }
@@ -67,6 +82,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-babel");
 
     grunt.registerTask("dev", ["clean", "babel", "copy:dist"]);
-    grunt.registerTask("start", ["dev", "connect", "watch"]);
+    grunt.registerTask("start", ["dev", "connect:dist", "watch:dist"]);
     grunt.registerTask("build", ["dev", "copy:pages"]);
+    grunt.registerTask("docs", ["connect:docs", "watch:docs"]);
 }
