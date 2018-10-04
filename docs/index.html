@@ -16,6 +16,27 @@
 			.reveal .playback {
 				bottom: 25px !important
 			}
+
+            .split {
+                display: flex;
+            }
+
+            .split > div {
+                flex: 1;
+            }
+
+            .reveal ul.without-bullets > li:before {
+                content: none;
+                margin: 0;
+            }
+
+            img.icon, .reveal section img.icon {
+                margin: 0;
+                border: 0;
+                height: 1em;
+                width: 1em;
+                box-shadow: none;
+            }
 		</style>
 
 		<!-- Printing and PDF exports -->
@@ -29,7 +50,7 @@
 	</head>
 	<body>
 		<img src="assets/logo.png" class="logo"/>
-		<div class="footnote">msg | April 2018 | sitTSR 2018</div>
+		<div class="footnote">msg | October 2018 | #itconsapcj</div>
 		<div class="reveal">
 			<div class="slides">
 				<section>
@@ -39,17 +60,21 @@
 					</p>
                 </section>
                 <section>
+                    <img src="./assets/hero.png" style="border: 0" />
                     <h3>About me</h3>
                     <ul>
                         <li>Senior IT Consultant @ msg-systems</li>
-                        <li>Lead dev and architect for a cloud project</li>
+                        <li>Lead developer and architect</li>
                         <li>Worked with ABAP, HANA, UI5, SCP</li>
-                        <li>Really into open source (Spring, Node, React)</li>
-                        <li><a href="http://serban-petrescu.github.io">http://serban-petrescu.github.io</a></li>
+                        <li>SAP Developer Hero (2018)</li>
                     </ul>
                 </section>
                 <section>
-                    <h1><a href="https://serban-petrescu.github.io/ui5-jsx-gallery/dist/index.html">Show App</a></h1>
+                    <h3><a href="https://serban-petrescu.github.io/ui5-jsx-gallery/dist/index.html">The Gallery App</a></h3>
+                    <p>
+                        <img src="./assets/prize.jpg"> <br />
+                        <em>(it was awarded 2nd place in this year's UI5 Top 5)</em>
+                    </p>
                 </section>
                 <section>
                     <section>
@@ -240,8 +265,28 @@ function(oRm, oControl) {
                     </section>
                 </section>
 				<section>
-					<h3>Fork me on GitHub</h3>
-					<a href="https://github.com/serban-petrescu/ui5-jsx-gallery">https://github.com/serban-petrescu/ui5-jsx-gallery</a>
+                    <h3><strong>Thanks</strong> for your attention!</h3>
+                    <br />
+					<div class="split">
+                        <div>
+                            <h5>Feedback</h5>
+                            <img src="./assets/qr.svg"/>
+                            <small><strong>itconferencesap.com/2018/feedback</strong></small>
+                        </div>
+                        <div>
+                            <h5>Social</h5>
+                            <br />
+                            <small>
+                                <ul class="without-bullets">
+                                    <li><img class="icon" src="./assets/twitter.ico"/> @petrescu_serban</li>
+                                    <li>&nbsp;</li>
+                                    <li><img class="icon" src="./assets/github.ico"/> github.com/serban-petrescu/</li>
+                                    <li>&nbsp;</li>
+                                    <li><img class="icon" src="./assets/scn.ico"/> people.sap.com/serban.petrescu</li>
+                                </ul>
+                            </small>
+                        </div>
+                    </div>
 				</section>
 			</div>
 		</div>
