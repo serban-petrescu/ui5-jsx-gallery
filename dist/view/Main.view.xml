@@ -1,0 +1,66 @@
+<core:View controllerName="gallery.controller.Main"
+	xmlns:core="sap.ui.core"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns="gallery.control"
+	height="100%">
+    <Menu image="assets/logo.png">
+        <left>
+            <Link text="{i18n>home}" active="{= ${view>/page} === 'home'}" click="goToHome" />
+            <Link text="{i18n>feed}" active="{= ${view>/page} === 'feed'}" click="goToFeed" />
+            <Link text="{i18n>browse}" active="{= ${view>/page} === 'browse'}" click="goToBrowse" />
+        </left>
+        <right>
+            <Select selectedKey="en" change=".onLanguageChange" class="inverted">
+                <core:Item key="en" text="{i18n>english}" />
+                <core:Item key="ro" text="{i18n>romanian}" />
+            </Select>
+        </right>
+    </Menu>
+
+    <Page visible="{= ${view>/page} === 'home'}">
+        <Title title="{i18n>title}" subtitle="{i18n>subtitle}" />
+        <IconHeader icon="users" title="{i18n>homeCommTitle}" subtitle="{i18n>homeCommSubtitle}"
+            class="sapUiLargeMarginTopBottom" />
+        <IconHeader icon="globe" title="{i18n>homeGlobeTitle}" subtitle="{i18n>homeGlobeSubtitle}"
+            class="sapUiLargeMarginTopBottom"/>
+        <IconHeader icon="comments" title="{i18n>homeUsersTitle}" subtitle="{i18n>homeUsersSubtitle}"
+            class="sapUiLargeMarginTopBottom"/>
+    </Page>
+
+    <Page visible="{= ${view>/page} === 'feed'}">
+        <Feed content="{path: '/feed', sorter: {path: 'date', descending: true}}" class="sapUiLargeMarginTopBottom">
+            <Event profile="{profile}" name="{name}" title="{i18n>eventTitle}" date="{path: 'date', formatter: '.formatRelativeDate'}"
+                likes="{likes}" comments="{comments}" images="{path: 'images', formatter: '.formatImageArray'}"/>
+        </Feed>
+    </Page>
+
+    <Page visible="{= ${view>/page} === 'browse'}">
+        <CardHolder cards="{/browse}" loadingText="{i18n>busyText}">
+            <Card image="{image}" name="{user/name}" profile="{user/avatar}" likes="{likes}" comments="{comments}"
+                categoryColor="{path: 'category', formatter: '.formatCategoryColor'}" url="{user/url}"
+                category="{path: 'category', formatter: '.formatCategory'}"  />
+        </CardHolder>
+    </Page>
+
+    <Footer leftHeader="{i18n>footerLeftTitle}" middleHeader="{i18n>footerMiddleTitle}"
+        rightHeader="{i18n>footerRightTitle}" rightText="{i18n>footerRightText}" visible="{= ${view>/page} === 'home'}">
+        <left>
+            <Link text="{i18n>about_1}" />
+            <Link text="{i18n>about_2}" />
+            <Link text="{i18n>about_3}" />
+            <Link text="{i18n>about_4}" />
+            <Link text="{i18n>about_5}" />
+        </left>
+        <middle>
+            <Link text="{i18n>services_1}" />
+            <Link text="{i18n>services_2}" />
+            <Link text="{i18n>services_3}" />
+        </middle>
+        <right>
+            <Link text="OpenUI5" />
+            <Link text="Babel" />
+            <Link text="Grunt" />
+        </right>
+    </Footer>
+</core:View>

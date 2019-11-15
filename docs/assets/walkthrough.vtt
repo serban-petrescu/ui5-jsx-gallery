@@ -1,0 +1,57 @@
+WEBVTT FILE
+
+1
+00:00:02.000 --> 00:00:08.000
+We start the development server (with live reload).
+
+2
+00:00:14.500 --> 00:00:19.000
+The home headers, feed events and browse cards are empty divs.
+
+3
+00:00:22.500 --> 00:00:28.000
+This is the static HTML and CSS for a single card.
+
+4
+00:00:29.500 --> 00:00:35.000
+We copy-paste it directly in the card control renderer function.
+
+5
+00:00:40.000 --> 00:00:42.000
+Let's see the result...
+
+6
+00:00:43.500 --> 00:00:47.000
+The data is all messed up.
+
+7
+00:00:47.500 --> 00:00:52.000
+We need to replace the hard coded values
+
+8
+00:00:52.000 --> 00:00:55.000
+with the control's properties.
+
+9
+00:01:25.000 --> 00:01:30.000
+We default the like and comment count to 0.
+
+10
+00:01:53.000 --> 00:01:55.000
+Let's see the result again...
+
+12
+00:01:55.500 --> 00:01:59.000
+The category ribbon is always black.
+
+13
+00:02:02.000 --> 00:02:05.000
+We have a property for that as well.
+
+14
+00:02:08.000 --> 00:02:14.000
+And we use it with the dynamic class array syntax.
+
+15
+00:02:33.000 --> 00:02:35.000
+Done!

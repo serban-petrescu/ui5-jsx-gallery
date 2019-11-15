@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JSX &amp; UI5</title>
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/msg.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="assets/xcode.css">
+
+		<style>
+			.reveal .playback {
+				bottom: 25px !important
+			}
+
+            .split {
+                display: flex;
+            }
+
+            .split > div {
+                flex: 1;
+            }
+
+            .reveal ul.without-bullets > li:before {
+                content: none;
+                margin: 0;
+            }
+
+            img.icon, .reveal section img.icon {
+                margin: 0;
+                border: 0;
+                height: 1em;
+                width: 1em;
+                box-shadow: none;
+            }
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<img src="assets/logo.png" class="logo"/>
+		<div class="footnote">msg | October 2018 | #itconsapcj</div>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Building apps with JSX for UI5</h1>
+					<p>
+						<small>by <a href="https://serban-petrescu.github.io">Serban Petrescu</a></small>
+					</p>
+                </section>
+                <section>
+                    <img src="./assets/hero.png" style="border: 0" />
+                    <h3>About me</h3>
+                    <ul>
+                        <li>Senior IT Consultant @ msg-systems</li>
+                        <li>Lead developer and architect</li>
+                        <li>Worked with ABAP, HANA, UI5, SCP</li>
+                        <li>SAP Developer Hero (2018)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><a href="https://serban-petrescu.github.io/ui5-jsx-gallery/dist/index.html">The Gallery App</a></h3>
+                    <p>
+                        <img src="./assets/prize.jpg"> <br />
+                        <em>(it was awarded 2nd place in this year's UI5 Top 5)</em>
+                    </p>
+                </section>
+                <section>
+                    <section>
+                        <h1>Web Recap</h1>
+                    </section>
+                    <section>
+                        <p>
+                            <strong>HTML</strong>: intermingled <strong>structure</strong> and <strong>data</strong>.
+                        </p>
+                        <p>
+                            <strong>CSS</strong>: defines how the HTML should <strong>look</strong> like.
+                        </p>
+                        <p>
+                            <strong>JavaScript</strong>: user <strong>interaction</strong>, communication with the backend,
+                            dynamic UI building, etc.
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Bare HTML vs With Semantic CSS</h3>
+                        <img src="./assets/html-css.png" />
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>UI5 Basics</h1>
+                    </section>
+                    <section>
+                        <p>
+                            UI5 is a (<em>archaic</em>) partially <strong>open source</strong> framework from SAP.
+                            It has all the necessary parts for building UIs from scratch.
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            UI5 applications boil down to a tree of controls. Each control may have several
+                            <strong>aggregations</strong> under which child controls may reside.
+                        </p>
+                        <img src="./assets/aggregations.png"/>
+                    </section>
+                    <section>
+                        <p>
+                            Each control has a <strong>renderer</strong> function or class which is responsible for writing the
+                            control's HTML.
+                        </p>
+                        <img src="./assets/rendering.png"/>
+                    </section>
+                    <section>
+                        <h3>UI5 vs HTML</h3>
+                        <img src="./assets/ui5-html.png"/>
+                    </section>
+                </section>
+				<section>
+					<section>
+						<h1>JSX Basics</h1>
+					</section>
+					<section>
+						<p>
+							<strong>JSX</strong> is a syntax extension for JavaScript popularized by ReactJS.
+                        </p>
+                        <p>
+                            The power of JSX is that it can be mixed with regular JavaScript expressions.
+                        </p>
+                    </section>
+                    <section>
+                        <p> For example the following JSX expression: </p>
+<pre><code>
+    <ul>
+    {
+        ["A", "B", "C", "D", "E"].forEach(l => <li>{ l }</li>)
+    }
+    </ul>
+
+</code></pre>
+                        <p>... could potentially create a list with 5 items.</p>
+                    </section>
+                    <section>
+                        <p>
+                            JSX needs to be <strong>compiled</strong> into regular JavaScript.
+                        </p>
+                        <p>
+                            For example the following React JSX expression:
+                        </p>
+<pre><code class="javascript">
+const element = (
+    &lt;h1 className="greeting">Hello, world!&lt;/h1>
+);
+
+</code></pre>
+                        <p>... gets compiled using Babel into:</p>
+<pre><code class="javascript">
+const element = React.createElement(
+    'h1', {className: 'greeting'}, 'Hello, world!'
+);
+
+</code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Custom Controls</h1>
+                    </section>
+                    <section>
+                        <p>
+                            UI5 allows developers to define their own controls, in the same way that standard controls are created by SAP.
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Rendering the HTML for a control is a pain in the #$!. It is highly error prone and completely unreadable.
+                        </p>
+                    </section>
+                    <section>
+                        <p>UI5 documentation renderer example:</p>
+<pre><code class="javascript">
+function(oRm, oControl) {
+    oRm.write('&lt;div');
+    oRm.writeControlData(oControl);
+    oRm.addStyle('width', oControl.getSize());
+    oRm.addStyle('height', oControl.getSize());
+    oRm.writeStyles();
+    oRm.addClass('mySquare');
+    oRm.writeClasses();
+    oRm.write('>');
+    oRm.writeEscaped(oControl.getText());
+    oRm.write('&lt;/div>');
+}
+
+</code></pre>
+                    </section>
+                    <section>
+                        <p>Wouldn't it be easier to just write:</p>
+<pre><code class="javascript">
+function(oRm, oControl) {
+    var size = oControl.getSize();
+    oRm.render(
+        &lt;div class="mySquare" style={ {width: size, height: size} }>
+            { oControl.getText() }
+        &lt;/div>
+    );
+}
+
+</code></pre>
+                    </section>
+                    <section>
+                        <p>We can do just that using <strong>Babel</strong> with
+                            <a href="https://github.com/serban-petrescu/ui5-jsx-rm">a small plugin</a> that I wrote.</p>
+                    </section>
+                    <section>
+                        <h1><strong>Demo: Select</strong></h1>
+                        <p><a href="https://github.com/serban-petrescu/ui5-jsx-gallery/blob/master/src/control/Select.js">With JSX</a></p>
+                        <p><a href="https://github.com/serban-petrescu/ui5-jsx-gallery/blob/gh-pages/dist/control/Select.js">Compiled</a></p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Why JSX?</h1>
+                    </section>
+                    <section>
+                        <p>
+                            There is a wide support from tools and frameworks:
+                            <ul>
+                                <li>ReactJS (>90k stars)</li>
+                                <li>VueJS (>90k stars)</li>
+                                <li>BabelJS (>25k stars)</li>
+                            </ul>
+                        </p>
+                        <small>OpenUI5 has ~1.5k stars.</small>
+                    </section>
+                    <section>
+                        <p>
+                            Can be checked at design time using <strong>eslint</strong> to prevent frequent
+                            mistakes (e.g. forgetting to close a div tag).
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            Arguably, it has the most flexibility because it can use JavaScript expressions directly.
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3><strong>Walk-through</strong></h3>
+                        <video data-autoplay controls>
+                            <source src="assets/walkthrough.mp4" type="video/mp4"/>
+                            <track src="assets/walkthrough.vtt" srclang="en" kind="subtitles" label="en" default/>
+                        </video>
+                    </section>
+                </section>
+				<section>
+                    <h3><strong>Thanks</strong> for your attention!</h3>
+                    <br />
+					<div class="split">
+                        <div>
+                            <h5>Feedback</h5>
+                            <img src="./assets/qr.svg"/>
+                            <small><strong>itconferencesap.com/2018/feedback</strong></small>
+                        </div>
+                        <div>
+                            <h5>Social</h5>
+                            <br />
+                            <small>
+                                <ul class="without-bullets">
+                                    <li><img class="icon" src="./assets/twitter.ico"/> @petrescu_serban</li>
+                                    <li>&nbsp;</li>
+                                    <li><img class="icon" src="./assets/github.ico"/> github.com/serban-petrescu/</li>
+                                    <li>&nbsp;</li>
+                                    <li><img class="icon" src="./assets/scn.ico"/> people.sap.com/serban.petrescu</li>
+                                </ul>
+                            </small>
+                        </div>
+                    </div>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				mouseWheel: true,
+				slideNumber: true,
+				transition: 'slide',
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
